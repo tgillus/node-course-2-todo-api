@@ -20,27 +20,22 @@ app.post("/todos", (req, res) => {
     text: req.body.text
   });
 
-  todo.save().then(
-    todo => {
+  todo
+    .save()
+    .then(todo => {
       res.send(todo);
-    },
-    err => {
-      res.status(400).send(err);
-    }
-  );
+    })
+    .catch(err => res.status(400).send(err));
 });
 
 app.get("/todos", (req, res) => {
-  Todo.find().then(
-    todos => {
+  Todo.find()
+    .then(todos => {
       res.send({
         todos
       });
-    },
-    err => {
-      res.status(400).send(err);
-    }
-  );
+    })
+    .catch(err => res.status(400).send(err));
 });
 
 app.get("/todos/:id", (req, res) => {
