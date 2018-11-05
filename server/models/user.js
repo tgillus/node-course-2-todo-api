@@ -83,7 +83,7 @@ UserSchema.statics.findByCredentials = function(email, password) {
     email
   }).then(user => {
     if (!user) {
-      return Promise.reject("User not found.");
+      return Promise.reject({ error: "User not found." });
     }
 
     return new Promise((resolve, reject) => {
@@ -91,7 +91,7 @@ UserSchema.statics.findByCredentials = function(email, password) {
         if (res) {
           resolve(user);
         } else {
-          reject("Invalid credentials.");
+          reject({ error: "Invalid credentials." });
         }
       });
     });
