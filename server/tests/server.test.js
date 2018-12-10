@@ -49,7 +49,7 @@ describe("POST /todos", () => {
       })
       .end(err => {
         if (err) {
-          done();
+          return done();
         }
 
         Todo.find()
