@@ -22,7 +22,7 @@ describe("POST /todos", () => {
       .expect(res => {
         expect(res.body.text).toBe(text);
       })
-      .end((err, res) => {
+      .end(err => {
         if (err) {
           return done(err);
         }
@@ -47,7 +47,7 @@ describe("POST /todos", () => {
       .expect(res => {
         expect(res.body.message).toBe("Todo validation failed");
       })
-      .end((err, res) => {
+      .end(err => {
         if (err) {
           done();
         }
@@ -126,7 +126,7 @@ describe("DELETE /todos/:id", () => {
       .expect(res => {
         expect(res.body.todo._id).toBe(objectId);
       })
-      .end((err, res) => {
+      .end(err => {
         if (err) {
           return done(err);
         }
@@ -147,7 +147,7 @@ describe("DELETE /todos/:id", () => {
       .delete(`/todos/${objectId}`)
       .set("x-auth", users[0].tokens[0].token)
       .expect(404)
-      .end((err, res) => {
+      .end(err => {
         if (err) {
           return done(err);
         }
@@ -338,7 +338,7 @@ describe("POST /users/login", () => {
       .expect(res => {
         expect(res.body).toEqual({ error: "Invalid credentials." });
       })
-      .end((err, res) => {
+      .end(err => {
         if (err) {
           return done(err);
         }
@@ -374,7 +374,7 @@ describe("DELETE /users/me/token", () => {
       .set("x-auth", users[0].tokens[0].token)
       .send()
       .expect(200)
-      .end((err, res) => {
+      .end(err => {
         if (err) {
           return done(err);
         }
